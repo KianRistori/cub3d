@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/03 11:25:07 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/05 11:11:19 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,38 @@ typedef struct s_image {
 	int			bits_per_pixel;
 	int			line_size;
 	int			endian;
+	char		*path;
 }				t_image;
+
+typedef struct s_player
+{
+    double  pos_x;
+    double  pos_y;
+    double  dir_x;
+    double  dir_y;
+    double  plane_x;
+    double  plane_y;
+}               t_player;
+
+typedef struct s_color {
+	int	r;
+	int	g;
+	int	b;
+}				t_color;
 
 typedef struct s_program {
 	void		*mlx;
 	char		**map;
 	char		*map_path;
+	t_image		**textures;
+	t_color		floor;
+	t_color		ceiling;
 	t_window	window;
+	t_player	player;
 }				t_program;
 
+int		ft_arr_cmp(char *str, char **set);
+int		ft_map_parsing(char *map, t_program *prog);
+char	**ft_strjoin_map(char **map, char *str);
+int		ft_validate_map(char **map, t_program *prog);
 #endif

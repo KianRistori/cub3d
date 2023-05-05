@@ -12,7 +12,7 @@
 
 NAME	= libft.a
 
-SRC	= ft_itoa.c ft_strcpy.c ft_strcat.c ft_strdup.c
+SRC	= ft_itoa.c ft_strcpy.c ft_strcat.c ft_strdup.c ft_strnstr.c ft_split.c ft_atoi.c
 
 OBJ	= $(SRC:.c=.o)
 

@@ -21,5 +21,8 @@ char	*ft_itoa(int n);
 char	*ft_strcpy(char *dest, char *src);
 char	*ft_strcat(char *dest, char *src);
 char	*ft_strdup(char *s);
+char	*ft_strnstr(const char *big, const char *little, unsigned int len);
+char	**ft_split(char const *s, char c);
+int	ft_atoi(const char *str);
 
 #endif

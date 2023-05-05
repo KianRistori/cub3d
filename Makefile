@@ -1,11 +1,11 @@
 NAME = cub3d
-SRC = cub3d.c
+SRC = cub3d.c map_parsing.c utils.c validate_map.c
 OBJ = $(SRC:.c=.o)
 
 MLX = @mlx/Makefile.gen
 LIBFT = @libft/Makefile
 GNL = @gnl/Makefile
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -g -Wall -Wextra -Werror
 LIB = mlx/libmlx_Linux.a mlx/libmlx.a libft/libft.a gnl/gnl.a
 LINKS = -Lmlx_linux -Imlx_linux -lXext -lX11 -lm -lz
 
