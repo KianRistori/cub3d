@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:43 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/04 16:28:44 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/05 12:16:04 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,17 @@ int main(int ac, char **av)
 		}
 	}
 	program.mlx = mlx_init();
-	program.window.reference = mlx_new_window(program.mlx, SCREEN_W, SCREEN_H, "cub3d");
+	program.window = ft_new_window(&program, "cub3d");
+	program.player.dir_x = -1;
+	program.player.dir_y = 0;
+	program.player.plane_x = 0;
+	program.player.plane_y = 0.66;
+	program.time = 0;
+	program.old_time = 0;
+	mlx_hook(program.window.reference, 17, 0, *ft_close, &program);
+	mlx_key_hook(program.window.reference, *ft_input, &program);
+	// mlx_loop_hook(program.mlx, *ft_update, &program);
+	mlx_loop(program.mlx);
 	mlx_loop(program.mlx);
 	return 0;
 }
