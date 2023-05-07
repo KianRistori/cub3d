@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/05 11:34:04 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/07 16:21:23 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,46 @@ static int	ft_charcmp(char c, char *set)
 	return (flag);
 }
 
+static void	ft_initial_position_player(char **map, int i, int j, t_program *prog)
+{
+	if (map[i][j] == 'N' || map[i][j] == 'S'
+		|| map[i][j] == 'E' || map[i][j] == 'W')
+	{
+		printf("ok\n");
+		prog->player.pos_x = i;
+		prog->player.pos_y = j;
+		if (map[i][j] == 'N')
+		{
+			prog->player.dir_x = -1;
+			prog->player.dir_y = 0;
+			prog->player.plane_x = 0;
+			prog->player.plane_y = 0.66;
+		}
+		else if (map[i][j] == 'W')
+		{
+			prog->player.dir_x = 0;
+			prog->player.dir_y = -1;
+			prog->player.plane_x = -0.66;
+			prog->player.plane_y = 0;
+		}
+		else if (map[i][j] == 'S')
+		{
+			prog->player.dir_x = 1;
+			prog->player.dir_y = 0;
+			prog->player.plane_x = 0;
+			prog->player.plane_y = -0.66;
+		}
+		else if (map[i][j] == 'E')
+		{
+			prog->player.dir_x = 0;
+			prog->player.dir_y = 1;
+			prog->player.plane_x = 0.66;
+			prog->player.plane_y = 0;
+		}
+		map[i][j] = '0';
+	}
+}
+
 int	ft_validate_map(char **map, t_program *prog)
 {
 	int 	i;
@@ -86,12 +126,7 @@ int	ft_validate_map(char **map, t_program *prog)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'N' || map[i][j] == 'S'
-				|| map[i][j] == 'E' || map[i][j] == 'W')
-			{
-				prog->player.pos_x = i;
-				prog->player.pos_y = j;
-			}
+			ft_initial_position_player(map, i, j, prog);
 			if (!ft_charcmp(map[i][j], set))
 				return (0);
 			j++;

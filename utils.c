@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/05 11:33:10 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:27:07 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,17 @@ char **ft_strjoin_map(char **map, char *str)
 	new_map[++j] = 0;
 	//ft_free(map);
 	return (new_map);
+}
+
+int ft_add_shade(int color, float factor)
+{
+    int r = (color >> 16) & 0xFF;
+    int g = (color >> 8) & 0xFF;
+    int b = color & 0xFF;
+
+    r *= factor;
+    g *= factor;
+    b *= factor;
+
+    return ((r << 16) | (g << 8) | b);
 }

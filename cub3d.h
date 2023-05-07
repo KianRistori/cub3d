@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/05 11:45:24 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:27:22 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,6 @@ typedef struct s_program {
 	void		*mlx;
 	char		**map;
 	char		*map_path;
-	double		time;
-	double		old_time;
 	double		move_speed;
 	t_image		**textures;
 	t_color		floor;
@@ -90,4 +88,6 @@ void	ft_draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int en
 void	ft_draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int y1, int y2, int color);
 int	ft_input(int key, void *param);
 int	ft_update(void *param);
+int ft_add_shade(int color, float factor);
+
 #endif
