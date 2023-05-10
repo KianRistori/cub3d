@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/06 13:27:22 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:39:28 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,12 @@ t_window	ft_new_window(t_program *program, char *name);
 void	ft_exit(t_program *program, int key);
 int	ft_close(void *param);
 void	ft_free_all(t_program *program);
-void	ft_draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, int color);
 void	ft_draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int y1, int y2, int color);
+void	ft_draw_minimap(t_program *prog);
 int	ft_input(int key, void *param);
 int	ft_update(void *param);
 int ft_add_shade(int color, float factor);
+int	ft_create_trgb(int t, t_color color);
 
 #endif

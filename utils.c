@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/06 13:27:07 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/08 10:39:41 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,9 @@ int ft_add_shade(int color, float factor)
     b *= factor;
 
     return ((r << 16) | (g << 8) | b);
+}
+
+int	ft_create_trgb(int t, t_color color)
+{
+	return (t << 24 | color.r << 16 | color.g << 8 | color.b);
 }
