@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/08 10:39:28 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:49:20 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_program {
 	char		*map_path;
 	double		move_speed;
 	t_image		**textures;
+	t_image		buffer;
 	t_color		floor;
 	t_color		ceiling;
 	t_window	window;
@@ -85,11 +86,14 @@ void	ft_exit(t_program *program, int key);
 int	ft_close(void *param);
 void	ft_free_all(t_program *program);
 void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, int color);
-void	ft_draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int y1, int y2, int color);
+void	ft_draw_vertical_line(t_program *prog, int x, int y1, int y2, int color);
 void	ft_draw_minimap(t_program *prog);
 int	ft_input(int key, void *param);
 int	ft_update(void *param);
 int ft_add_shade(int color, float factor);
 int	ft_create_trgb(int t, t_color color);
+void	ft_create_image(t_program *program);
+void	my_mlx_pixel_put(t_program *prog, int x, int y, int color);
+t_image	ft_new_image(void *mlx, int width, int height);
 
 #endif

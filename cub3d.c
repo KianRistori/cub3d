@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:43 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/08 10:49:33 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:56:01 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int main(int ac, char **av)
 		}
 		program.mlx = mlx_init();
 		program.window = ft_new_window(&program, "cub3d");
+		program.buffer = ft_new_image(program.mlx, SCREEN_W, SCREEN_H);
 		mlx_hook(program.window.reference, 17, 0, *ft_close, &program);
 		mlx_key_hook(program.window.reference, *ft_input, &program);
 		// mlx_loop_hook(program.mlx, *ft_update, &program);

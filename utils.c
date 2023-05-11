@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/08 10:39:41 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:36:12 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,34 @@ char **ft_strjoin_map(char **map, char *str)
 
 int ft_add_shade(int color, float factor)
 {
-    int r = (color >> 16) & 0xFF;
-    int g = (color >> 8) & 0xFF;
-    int b = color & 0xFF;
+	int r = (color >> 16) & 0xFF;
+	int g = (color >> 8) & 0xFF;
+	int b = color & 0xFF;
 
-    r *= factor;
-    g *= factor;
-    b *= factor;
+	r *= factor;
+	g *= factor;
+	b *= factor;
 
-    return ((r << 16) | (g << 8) | b);
+	return ((r << 16) | (g << 8) | b);
 }
 
 int	ft_create_trgb(int t, t_color color)
 {
 	return (t << 24 | color.r << 16 | color.g << 8 | color.b);
+}
+
+// unsigned int    ft_mlx_pixel_get(t_img *data, int x, int y)
+// {
+//     char    *dst;
+//     dst = data->data + (y * data->line_len + x * (data->bpp / 8));
+//     return (*(unsigned int *)dst);
+// }
+
+void	my_mlx_pixel_put(t_program *prog, int x, int y, int color)
+{
+	char	*i;
+	int		y1;
+	y1 = y * prog->buffer.line_size;
+	i = prog->buffer.pixels + (y1 + x * (prog->buffer.bits_per_pixel / 8));
+	*(unsigned int *)i = color;
 }

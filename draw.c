@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:41:37 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/08 10:12:10 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:46:05 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void mlx_fill_square(t_program *prog, int x, int y, int size, int color)
 {
-    for (int i = 0; i < size; i++) 
+    for (int i = 0; i < size; i++)
 	{
-        for (int j = 0; j < size; j++) 
+        for (int j = 0; j < size; j++)
 		{
-            mlx_pixel_put(prog->mlx, prog->window.reference, x + i, y + j, color);
+			my_mlx_pixel_put(prog, x + i, y + j, color);
         }
     }
 }
 
 void	ft_draw_minimap(t_program *prog)
 {
-	for (int y = 0; prog->map[y] != NULL; y++) 
+	for (int y = 0; prog->map[y] != NULL; y++)
 	{
         for (int x = 0; prog->map[y][x] != '\0'; x++)
 		 {
@@ -57,10 +57,11 @@ void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, i
 	}
 }
 
-void	ft_draw_vertical_line(void *mlx_ptr, void *win_ptr, int x, int y1, int y2, int color)
+void	ft_draw_vertical_line(t_program *prog, int x, int y1, int y2, int color)
 {
 	int y;
 
 	for (y = y1; y <= y2; y++)
-		mlx_pixel_put(mlx_ptr, win_ptr, x, y, color);
+		my_mlx_pixel_put(prog, x, y, color);
+
 }
