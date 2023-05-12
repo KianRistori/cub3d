@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/11 15:36:12 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/12 10:41:46 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,7 @@ int	ft_create_trgb(int t, t_color color)
 	return (t << 24 | color.r << 16 | color.g << 8 | color.b);
 }
 
-// unsigned int    ft_mlx_pixel_get(t_img *data, int x, int y)
-// {
-//     char    *dst;
-//     dst = data->data + (y * data->line_len + x * (data->bpp / 8));
-//     return (*(unsigned int *)dst);
-// }
-
-void	my_mlx_pixel_put(t_program *prog, int x, int y, int color)
+void	ft_mlx_pixel_put(t_program *prog, int x, int y, int color)
 {
 	char	*i;
 	int		y1;

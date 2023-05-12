@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/11 15:49:20 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:44:53 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_program {
 	char		**map;
 	char		*map_path;
 	double		move_speed;
+	double		rot_speed;
 	t_image		**textures;
 	t_image		buffer;
 	t_color		floor;
@@ -93,7 +94,7 @@ int	ft_update(void *param);
 int ft_add_shade(int color, float factor);
 int	ft_create_trgb(int t, t_color color);
 void	ft_create_image(t_program *program);
-void	my_mlx_pixel_put(t_program *prog, int x, int y, int color);
+void	ft_mlx_pixel_put(t_program *prog, int x, int y, int color);
 t_image	ft_new_image(void *mlx, int width, int height);
 
 #endif

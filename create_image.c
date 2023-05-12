@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:09:44 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/11 15:55:58 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/12 11:36:57 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_create_image(t_program *program)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
 		{
-			my_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->ceiling));
+			ft_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->ceiling));
 		}
 	}
 	// Disegna il terreno
@@ -39,7 +39,7 @@ void	ft_create_image(t_program *program)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
 		{
-			my_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->floor));
+			ft_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->floor));
 		}
 	}
 	for (int x = 0; x < SCREEN_W; x++)
