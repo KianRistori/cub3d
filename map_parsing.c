@@ -6,13 +6,13 @@
 /*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:38:26 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/05 11:34:03 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/19 15:56:24 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int	ft_get_textures(char *line, t_image **textures)
+static int	ft_get_textures(char *line, t_program *prog)
 {
 	char	*char_set[4];
 	int		index;
@@ -25,10 +25,10 @@ static int	ft_get_textures(char *line, t_image **textures)
 	if (line)
 	{
 		index = ft_arr_cmp(line, char_set);
-		if (index != -1 && textures[index]->path == NULL)
+		if (index != -1 && prog->path[index] == NULL)
 		{
 			split = ft_split(line, ' ');
-			textures[index]->path = split[1];
+			prog->path[index] = ft_strtrim(split[1], "\n");
 			return (1);
 			//ft_free()
 		}
@@ -72,44 +72,41 @@ static int	ft_get_color(char *line, t_program **prog)
 	return (count);
 }
 
-static t_image	**ft_texture_init()
+static void	ft_prog_init(t_program *prog)
 {
-	t_image	**textures;
-
-	textures = malloc(sizeof(t_image *) * 4);
-	textures[0] = malloc(sizeof(t_image));
-	textures[1] = malloc(sizeof(t_image));
-	textures[2] = malloc(sizeof(t_image));
-	textures[3] = malloc(sizeof(t_image));
-	textures[0]->path = NULL;
-	textures[1]->path = NULL;
-	textures[2]->path = NULL;
-	textures[3]->path = NULL;
-	return (textures);
+	// textures[0] = malloc(sizeof(t_image));
+	// textures[1] = malloc(sizeof(t_image));
+	// textures[2] = malloc(sizeof(t_image));
+	// textures[3] = malloc(sizeof(t_image));
+	prog->path = malloc(sizeof(char *) * 4);
+	prog->textures = malloc(sizeof(t_image) * 4);
+	prog->path[0] = NULL;
+	prog->path[1] = NULL;
+	prog->path[2] = NULL;
+	prog->path[3] = NULL;
+	prog->map = malloc(sizeof(char *) * 2);
+	prog->map[0] = 0;
 }
 
 int	ft_map_parsing(char *map, t_program *prog)
 {
 	int		path;
 	char	*line;
-	t_image	**textures;
 	int		count;
 
 	count = 0;
 	prog->map = malloc(sizeof(char *) * 2);
 	prog->map[0] = 0;
-	textures = NULL;
-	textures = ft_texture_init();
+	ft_prog_init(prog);
     path = open(map, O_RDWR);
     line = get_next_line(path);
 	while (line != NULL && count < 6)
 	{
-		count += ft_get_textures(line, textures);
+		count += ft_get_textures(line, prog);
 		count += ft_get_color(line, &prog);
 		// free(line);
 		line = get_next_line(path);
 	}
-	prog->textures = textures;
 	while (line != NULL)
 	{
 		prog->map = ft_strjoin_map(prog->map, line);

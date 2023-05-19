@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:35:09 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/03 11:13:33 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:02:20 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ char	*ft_strdup(char *s);
 char	*ft_strnstr(const char *big, const char *little, unsigned int len);
 char	**ft_split(char const *s, char c);
 int	ft_atoi(const char *str);
+char	*ft_strtrim(char *s1, char *set);
+size_t	ft_strlcpy(char *dest, char *src, size_t size);
 
 #endif

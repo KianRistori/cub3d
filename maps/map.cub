@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO textures/BRICK_3C.xpm
+SO textures/BRICK_3D.xpm
+WE textures/BRICK_4B.xpm
+EA textures/BRICK_4D.xpm
 
 F 100,100,0
 C 20,30,0

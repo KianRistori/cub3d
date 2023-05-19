@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kristori <kristori@student.42.fr>          +#+  +:+       +#+         #
+#    By: javellis <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/04 12:54:12 by kristori          #+#    #+#              #
-#    Updated: 2023/05/03 11:12:26 by kristori         ###   ########.fr        #
+#    Updated: 2023/05/19 16:02:33 by javellis         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 
-SRC	= ft_itoa.c ft_strcpy.c ft_strcat.c ft_strdup.c ft_strnstr.c ft_split.c ft_atoi.c
+SRC	= ft_itoa.c ft_strcpy.c ft_strcat.c ft_strdup.c ft_strnstr.c ft_split.c ft_atoi.c ft_strtrim.c ft_strlcpy.c
 
 OBJ	= $(SRC:.c=.o)
 

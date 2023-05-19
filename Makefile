@@ -1,5 +1,5 @@
 NAME = cub3d
-SRC = cub3d.c map_parsing.c utils.c validate_map.c window.c destroy.c draw.c hooks.c create_image.c
+SRC = cub3d.c map_parsing.c utils.c validate_map.c window.c destroy.c draw.c hooks.c create_image.c create_textures.c
 OBJ = $(SRC:.c=.o)
 
 MLX = @mlx/Makefile.gen

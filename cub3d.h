@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 11:40:09 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/19 16:14:10 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ typedef struct s_image {
 	int			bits_per_pixel;
 	int			line_size;
 	int			endian;
-	char		*path;
+	int			width;
+	int			height;
 }				t_image;
 
 typedef struct s_player
@@ -71,7 +72,7 @@ typedef struct s_program {
 	double		move_speed;
 	double		rot_speed;
 	int			mouse_move;
-	t_image		**textures;
+	t_image		*textures;
 	t_image		buffer;
 	t_image		buffer2;
 	t_color		floor;
@@ -79,6 +80,7 @@ typedef struct s_program {
 	t_window	window;
 	t_player	player;
 	t_vector	mouse_pos;
+	char		**path;
 }				t_program;
 
 int		ft_arr_cmp(char *str, char **set);
@@ -87,18 +89,20 @@ char	**ft_strjoin_map(char **map, char *str);
 int		ft_validate_map(char **map, t_program *prog);
 t_window	ft_new_window(t_program *program, char *name);
 void	ft_exit(t_program *program, int key);
-int	ft_close(void *param);
+int		ft_close(void *param);
 void	ft_free_all(t_program *program);
 void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, int color);
 void	ft_draw_vertical_line(int x, int y1, int y2, int color, t_image buffer);
 void	ft_draw_minimap(t_program *prog, t_image buffer);
-int	ft_input(int key, void *param);
-int	ft_update(void *param);
-int ft_add_shade(int color, float factor);
-int	ft_create_trgb(int t, t_color color);
+int		ft_input(int key, void *param);
+int		ft_update(void *param);
+int		ft_add_shade(int color, float factor);
+int		ft_create_trgb(int t, t_color color);
 void	ft_create_image(t_program *program, t_image buffer);
 void	ft_mlx_pixel_put(int x, int y, int color, t_image buffer);
 t_image	ft_new_image(void *mlx, int width, int height);
-int	ft_mouse(int x, int y, t_program *program);
+int		ft_mouse(int x, int y, t_program *program);
+void	ft_load_textures(t_program *prog);
+
 
 #endif
