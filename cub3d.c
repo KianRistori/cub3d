@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:43 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/12 11:45:34 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:40:27 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,19 @@ int main(int ac, char **av)
 		program.mlx = mlx_init();
 		program.window = ft_new_window(&program, "cub3d");
 		program.buffer = ft_new_image(program.mlx, SCREEN_W, SCREEN_H);
-		mlx_do_key_autorepeaton(program.mlx);
+		program.buffer2 = ft_new_image(program.mlx, SCREEN_W, SCREEN_H);
 		program.move_speed = 0.1;
-		program.rot_speed = 0.1;
+		program.mouse_pos.x = 0;
+		program.mouse_pos.y = 0;
+		program.mouse_move = 0;
+		// mlx_mouse_hide(program.mlx, program.window.reference);
+		mlx_clear_window(program.mlx, program.window.reference);
+		ft_create_image(&program, program.buffer);
+		mlx_put_image_to_window(program.mlx, program.window.reference, program.buffer.reference, 0, 0);
 		mlx_hook(program.window.reference, 17, 0, ft_close, &program);
 		mlx_hook(program.window.reference, 2, (1L << 0), ft_input, &program);
+		mlx_hook(program.window.reference, 6, (1L << 6), ft_mouse, &program);
+
 		// mlx_key_hook(program.window.reference, ft_input, &program);
 		// mlx_loop_hook(program.mlx, *ft_update, &program);
 		mlx_loop(program.mlx);

@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:09:44 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/12 11:36:57 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/19 11:47:05 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ t_image	ft_new_image(void *mlx, int width, int height)
 	return (img);
 }
 
-void	ft_create_image(t_program *program)
+void	ft_create_image(t_program *program, t_image buffer)
 {
 	//Disegna il cielo
 	for (int y = 0; y < SCREEN_H / 2; y++)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
 		{
-			ft_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->ceiling));
+			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->ceiling), buffer);
 		}
 	}
 	// Disegna il terreno
@@ -39,7 +39,7 @@ void	ft_create_image(t_program *program)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
 		{
-			ft_mlx_pixel_put(program, x, y, ft_create_trgb(1, program->floor));
+			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->floor), buffer);
 		}
 	}
 	for (int x = 0; x < SCREEN_W; x++)
@@ -102,7 +102,7 @@ void	ft_create_image(t_program *program)
 				side = 1;
 			}
 			//Check if ray has hit a wall
-			if(program->map[mapX][mapY] > '0')
+			if(program->map[mapX][mapY] == '1' || program->map[mapX][mapY] == 'C')
 				hit = 1;
 		}
 
@@ -124,13 +124,17 @@ void	ft_create_image(t_program *program)
 
 		if (program->map[mapX][mapY] == '1')
 			color = 0x00FF0000;
+		if (program->map[mapX][mapY] == 'C')
+			color = 0x309286;
+		if (program->map[mapX][mapY] == 'O')
+			color = 0x301086;
 
 		//give x and y sides different brightness
 		if(side == 1)
 			color = ft_add_shade(color, 0.5);
 
 		//draw the pixels of the stripe as a vertical line
-		ft_draw_vertical_line(program, x, drawStart, drawEnd, color);
+		ft_draw_vertical_line(x, drawStart, drawEnd, color, buffer);
 	}
-	ft_draw_minimap(program);
+	// ft_draw_minimap(program, buffer);
 }

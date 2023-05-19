@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/11 14:25:06 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/15 11:52:46 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	ft_validate_map(char **map, t_program *prog)
 	char	**new_map;
 	int		err;
 
-	set = "01NSEW \n";
+	set = "01CONSEW \n";
 	i = 0;
 	err = 0;
 	while(map[i])
