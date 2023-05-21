@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:42:10 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 16:17:44 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:10:12 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,14 @@
 
 int	ft_mouse(int x, int y, t_program *program)
 {
-	static int	i;
-
 	(void)y;
 	int old_mouse_x = program->mouse_pos.x;
-	if (i % 2 == 0)
-	{
-		// printf("buff 1\n");
-		// mlx_clear_window(program->mlx, program->window.reference);
-		ft_create_image(program, program->buffer);
-		mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);
-	}
-	program->mouse_pos.x = x;
-	if (i % 2 == 1)
-	{
-		// printf("buff 2\n");
-		// mlx_clear_window(program->mlx, program->window.reference);
-		ft_create_image(program, program->buffer2);
-		mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer2.reference, 0, 0);
-	}
-	i++;
 	// printf("x: %d\n", x);
+	program->mouse_pos.x = x;
+		// printf("draw\n");
+	// mlx_clear_window(program->mlx, program->window.reference);
+	ft_create_image(program, program->buffer);
+	mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);
 	program->rot_speed = 0.01;
 	if (program->mouse_pos.x < SCREEN_W/7)
 		program->rot_speed = 0.06;
@@ -66,7 +53,7 @@ int	ft_input(int key, void *param)
 	t_program	*program;
 
 	program = (t_program *)param;
-	mlx_clear_window(program->mlx, program->window.reference);
+	// mlx_clear_window(program->mlx, program->window.reference);
 	ft_create_image(program, program->buffer);
 	mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);
 	// printf("key: %d\n", key);
@@ -145,14 +132,14 @@ int	ft_input(int key, void *param)
 		if (program->map[(int)(program->player.pos_x + program->player.dir_x * program->move_speed)][(int)(program->player.pos_y)] == 'C')
 		{
 			program->map[(int)(program->player.pos_x + program->player.dir_x * program->move_speed)][(int)(program->player.pos_y)] = 'O';
-			mlx_clear_window(program->mlx, program->window.reference);
+			// mlx_clear_window(program->mlx, program->window.reference);
 			ft_create_image(program, program->buffer);
 			mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);
 		}
 		else if (program->map[(int)(program->player.pos_x + program->player.dir_x * program->move_speed)][(int)(program->player.pos_y)] == 'O')
 		{
 			program->map[(int)(program->player.pos_x + program->player.dir_x * program->move_speed)][(int)(program->player.pos_y)] = 'C';
-			mlx_clear_window(program->mlx, program->window.reference);
+			// mlx_clear_window(program->mlx, program->window.reference);
 			ft_create_image(program, program->buffer);
 			mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);
 		}

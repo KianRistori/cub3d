@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:09:44 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 11:47:05 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/21 18:03:42 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,13 @@ void	ft_create_image(t_program *program, t_image buffer)
 	for (int y = 0; y < SCREEN_H / 2; y++)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
-		{
 			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->ceiling), buffer);
-		}
 	}
 	// Disegna il terreno
 	for (int y = SCREEN_H / 2; y < SCREEN_H; y++)
 	{
 		for (int x = 0; x < SCREEN_W; x++)
-		{
 			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->floor), buffer);
-		}
 	}
 	for (int x = 0; x < SCREEN_W; x++)
 	{
@@ -116,25 +112,44 @@ void	ft_create_image(t_program *program, t_image buffer)
 
 		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + SCREEN_H / 2;
-		if(drawStart < 0) drawStart = 0;
+		if (drawStart < 0)
+			drawStart = 0;
 		int drawEnd = lineHeight / 2 + SCREEN_H / 2;
-		if(drawEnd >= SCREEN_H) drawEnd = SCREEN_H - 1;
+		if (drawEnd >= SCREEN_H)
+			drawEnd = SCREEN_H - 1;
 
-		int color;
+  		double wallX; //where exactly the wall was hit
+     	if (side == 0) 
+			wallX = program->player.pos_y + perpWallDist * rayDirY;
+      	else           
+			wallX = program->player.pos_x + perpWallDist * rayDirX;
+      	wallX -= floor((wallX));
 
+		t_image texture;
+		
 		if (program->map[mapX][mapY] == '1')
-			color = 0x00FF0000;
+			texture = program->textures[0];
 		if (program->map[mapX][mapY] == 'C')
-			color = 0x309286;
-		if (program->map[mapX][mapY] == 'O')
-			color = 0x301086;
-
-		//give x and y sides different brightness
-		if(side == 1)
-			color = ft_add_shade(color, 0.5);
-
-		//draw the pixels of the stripe as a vertical line
-		ft_draw_vertical_line(x, drawStart, drawEnd, color, buffer);
+			texture = program->door;
+		// if (program->map[mapX][mapY] == 'O')
+		// 	color = 0x301086;
+		int texX = wallX * (texture.width);
+     	if(side == 0 && rayDirX > 0)
+			texX = texture.width - texX - 1;
+      	if(side == 1 && rayDirY < 0)
+			texX = texture.width - texX - 1;
+		
+		double step = 1.0 * texture.height / lineHeight;
+		double texPos = (drawStart - SCREEN_H / 2 + lineHeight / 2) * step;
+		for (int y = drawStart; y <= drawEnd; y++)
+		{
+			int texY = (int)texPos & (texture.height - 1); // Calculate the corresponding y-coordinate on the texture
+			texPos += step;
+			int color = ft_get_texture_pixel(texture, texX, texY); // Get the color from the texture
+			if(side == 1)
+				color = ft_add_shade(color, 0.5);
+			ft_mlx_pixel_put(x, y, color, buffer); // Draw the pixel on the screen
+		}
 	}
-	// ft_draw_minimap(program, buffer);
+	ft_draw_minimap(program, buffer);
 }

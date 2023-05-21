@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/19 10:53:55 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:22:54 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,16 @@ void	ft_mlx_pixel_put(int x, int y, int color, t_image buffer)
 	y1 = y * buffer.line_size;
 	i = buffer.pixels + (y1 + x * (buffer.bits_per_pixel / 8));
 	*(unsigned int *)i = color;
+}
+
+int	ft_get_texture_pixel(t_image texture, int x, int y)
+{
+	char	*pixel_addr;
+	int		color;
+
+	if (x < 0 || x >= texture.width || y < 0 || y >= texture.height)
+		return (0);
+	pixel_addr = texture.pixels + (y * texture.line_size + x * (texture.bits_per_pixel / 8));
+	color = *(unsigned int*)pixel_addr;
+	return (color);
 }

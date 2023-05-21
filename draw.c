@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:41:37 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 11:39:04 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:44:05 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,15 @@ void	ft_draw_vertical_line(int x, int y1, int y2, int color, t_image buffer)
 
 	for (y = y1; y <= y2; y++)
 		ft_mlx_pixel_put(x, y, color, buffer);
+}
+
+void	ft_put_texture_pixel(int x, int y, t_image texture, t_image buffer)
+{
+	if (x >= 0 && x < buffer.width && y >= 0 && y < buffer.height)
+	{
+		char	*dst = buffer.pixels + (y * buffer.line_size + x * (buffer.bits_per_pixel / 8));
+		char	*src = texture.pixels + ((y % texture.height) * texture.line_size + (x % texture.width) * (texture.bits_per_pixel / 8));
+
+		*(unsigned int*)dst = *(unsigned int*)src;
+	}
 }

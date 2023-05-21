@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:43 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 15:59:53 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/21 18:03:11 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ int main(int ac, char **av)
 		program.mlx = mlx_init();
 		program.window = ft_new_window(&program, "cub3d");
 		program.buffer = ft_new_image(program.mlx, SCREEN_W, SCREEN_H);
-		program.buffer2 = ft_new_image(program.mlx, SCREEN_W, SCREEN_H);
 		ft_load_textures(&program);
+		program.door = ft_get_image(&program, "textures/Door.xpm");
 		program.move_speed = 0.1;
 		program.mouse_pos.x = 0;
 		program.mouse_pos.y = 0;

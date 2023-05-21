@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_textures.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 16:30:15 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/19 16:12:51 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/21 18:02:21 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static t_image	ft_get_image(t_program *prog, char *path)
+t_image	ft_get_image(t_program *prog, char *path)
 {
 	t_image img;
 	if (path)

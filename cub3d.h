@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/19 16:14:10 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/21 18:02:33 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
+# include <unistd.h>
 
-// risoluzione
 # define SCREEN_W 640
 # define SCREEN_H 480
 
-# define mapWidth 24
-# define mapHeight 24
+#define TEXTURE_W 64
+#define TEXTURE_H 64
 
 typedef struct s_vector
 {
@@ -73,8 +73,8 @@ typedef struct s_program {
 	double		rot_speed;
 	int			mouse_move;
 	t_image		*textures;
+	t_image		door;
 	t_image		buffer;
-	t_image		buffer2;
 	t_color		floor;
 	t_color		ceiling;
 	t_window	window;
@@ -93,6 +93,7 @@ int		ft_close(void *param);
 void	ft_free_all(t_program *program);
 void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, int color);
 void	ft_draw_vertical_line(int x, int y1, int y2, int color, t_image buffer);
+void ft_mlx_put_image_pixel(int x, int drawStart, int drawEnd, t_image texture, t_image buffer);
 void	ft_draw_minimap(t_program *prog, t_image buffer);
 int		ft_input(int key, void *param);
 int		ft_update(void *param);
@@ -102,7 +103,9 @@ void	ft_create_image(t_program *program, t_image buffer);
 void	ft_mlx_pixel_put(int x, int y, int color, t_image buffer);
 t_image	ft_new_image(void *mlx, int width, int height);
 int		ft_mouse(int x, int y, t_program *program);
+t_image	ft_get_image(t_program *prog, char *path);
 void	ft_load_textures(t_program *prog);
-
+int	ft_get_texture_pixel(t_image texture, int x, int y);
+void	ft_put_texture_pixel(int x, int y, t_image texture, t_image buffer);
 
 #endif
