@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/21 18:02:33 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:17:31 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ typedef struct s_program {
 	t_image		*textures;
 	t_image		door;
 	t_image		buffer;
+	t_image		buffer2;
+	t_image		buffer3;
 	t_color		floor;
 	t_color		ceiling;
 	t_window	window;

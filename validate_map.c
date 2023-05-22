@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/15 11:52:46 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:32:32 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ static void	ft_initial_position_player(char **map, int i, int j, t_program *prog
 	if (map[i][j] == 'N' || map[i][j] == 'S'
 		|| map[i][j] == 'E' || map[i][j] == 'W')
 	{
-		prog->player.pos_x = i;
-		prog->player.pos_y = j;
+		prog->player.pos_x = i + 0.01;
+		prog->player.pos_y = j + 0.01;
 		if (map[i][j] == 'N')
 		{
 			prog->player.dir_x = -1;

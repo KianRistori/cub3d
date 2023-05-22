@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:09:44 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/21 18:03:42 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:02:40 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,12 @@ void	ft_create_image(t_program *program, t_image buffer)
 			stepY = 1;
 			sideDistY = (mapY + 1.0 - program->player.pos_y) * deltaDistY;
 		}
+		int wallDirection; // Valore iniziale non valido
 		//perform DDA
 		while(hit == 0)
 		{
 			//jump to next map square, either in x-direction, or in y-direction
+			// printf("sideX: %f, sideY: %f\n", sideDistX, sideDistY);
 			if(sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
@@ -100,8 +102,15 @@ void	ft_create_image(t_program *program, t_image buffer)
 			//Check if ray has hit a wall
 			if(program->map[mapX][mapY] == '1' || program->map[mapX][mapY] == 'C')
 				hit = 1;
+			if (side == 0 && stepX == -1)
+				wallDirection = 0; // Nord
+			else if (side == 0 && stepX == 1)
+				wallDirection = 1; // Sud
+			else if (side == 1 && stepY == -1)
+				wallDirection = 2; // Est
+			else if (side == 1 && stepY == 1)
+				wallDirection = 3; // Ovest
 		}
-
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
 		else
@@ -119,26 +128,30 @@ void	ft_create_image(t_program *program, t_image buffer)
 			drawEnd = SCREEN_H - 1;
 
   		double wallX; //where exactly the wall was hit
-     	if (side == 0) 
+     	if (side == 0)
 			wallX = program->player.pos_y + perpWallDist * rayDirY;
-      	else           
+      	else
 			wallX = program->player.pos_x + perpWallDist * rayDirX;
       	wallX -= floor((wallX));
 
 		t_image texture;
-		
-		if (program->map[mapX][mapY] == '1')
+
+		if (program->map[mapX][mapY] == '1' && wallDirection == 0)
 			texture = program->textures[0];
+		if (program->map[mapX][mapY] == '1' && wallDirection == 1)
+			texture = program->textures[1];
+		if (program->map[mapX][mapY] == '1' && wallDirection == 2)
+			texture = program->textures[2];
+		if (program->map[mapX][mapY] == '1' && wallDirection == 3)
+			texture = program->textures[3];
 		if (program->map[mapX][mapY] == 'C')
 			texture = program->door;
-		// if (program->map[mapX][mapY] == 'O')
-		// 	color = 0x301086;
 		int texX = wallX * (texture.width);
      	if(side == 0 && rayDirX > 0)
 			texX = texture.width - texX - 1;
       	if(side == 1 && rayDirY < 0)
 			texX = texture.width - texX - 1;
-		
+
 		double step = 1.0 * texture.height / lineHeight;
 		double texPos = (drawStart - SCREEN_H / 2 + lineHeight / 2) * step;
 		for (int y = drawStart; y <= drawEnd; y++)
