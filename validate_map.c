@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/22 14:32:32 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:49:18 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	**ft_mapdup(char **tab)
 
 static int	ft_path_find(char **map, int *err, int x, int y)
 {
-	if (x <= 0  || y <= 0 ||  map[x][y] == ' ' || map[x][y] == 10)
+	if (ft_strlen(map[x]) < (size_t)y || x <= 0  || y <= 0 ||  map[x][y] == ' ' || map[x][y] == 10)
 	{
 		*err = 1;
 		return (0);
