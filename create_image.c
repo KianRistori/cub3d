@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 15:09:44 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/22 15:02:40 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:17:24 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,12 @@ void	ft_create_image(t_program *program, t_image buffer)
 	}
 	for (int x = 0; x < SCREEN_W; x++)
 	{
-		double cameraX = 2 * x / (double)SCREEN_W - 1; //x-coordinate in camera space
+		double cameraX = 2 * x / (double)SCREEN_W - 1;
 		double rayDirX = program->player.dir_x + program->player.plane_x * cameraX;
 		double rayDirY = program->player.dir_y + program->player.plane_y * cameraX;
-		//which box of the map we're in
 		int mapX = (int)program->player.pos_x;
 		int mapY = (int)program->player.pos_y;
 
-		//length of ray from current position to next x or y-side
 		double sideDistX;
 		double sideDistY;
 
@@ -81,12 +79,10 @@ void	ft_create_image(t_program *program, t_image buffer)
 			stepY = 1;
 			sideDistY = (mapY + 1.0 - program->player.pos_y) * deltaDistY;
 		}
-		int wallDirection; // Valore iniziale non valido
-		//perform DDA
+		int wallDirection;
+
 		while(hit == 0)
 		{
-			//jump to next map square, either in x-direction, or in y-direction
-			// printf("sideX: %f, sideY: %f\n", sideDistX, sideDistY);
 			if(sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
@@ -99,27 +95,25 @@ void	ft_create_image(t_program *program, t_image buffer)
 				mapY += stepY;
 				side = 1;
 			}
-			//Check if ray has hit a wall
-			if(program->map[mapX][mapY] == '1' || program->map[mapX][mapY] == 'C')
+
+			if(program->map[mapX][mapY] == '1' || program->map[mapX][mapY] == 'C' || program->map[mapX][mapY] == 'A')
 				hit = 1;
 			if (side == 0 && stepX == -1)
-				wallDirection = 0; // Nord
+				wallDirection = 0;
 			else if (side == 0 && stepX == 1)
-				wallDirection = 1; // Sud
+				wallDirection = 1;
 			else if (side == 1 && stepY == -1)
-				wallDirection = 2; // Est
+				wallDirection = 2;
 			else if (side == 1 && stepY == 1)
-				wallDirection = 3; // Ovest
+				wallDirection = 3;
 		}
 		if (side == 0)
 			perpWallDist = (sideDistX - deltaDistX);
 		else
 			perpWallDist = (sideDistY - deltaDistY);
 
-		//Calculate height of line to draw on screen
 		int lineHeight = (int)(SCREEN_H / perpWallDist);
 
-		//calculate lowest and highest pixel to fill in current stripe
 		int drawStart = -lineHeight / 2 + SCREEN_H / 2;
 		if (drawStart < 0)
 			drawStart = 0;
@@ -127,7 +121,7 @@ void	ft_create_image(t_program *program, t_image buffer)
 		if (drawEnd >= SCREEN_H)
 			drawEnd = SCREEN_H - 1;
 
-  		double wallX; //where exactly the wall was hit
+  		double wallX;
      	if (side == 0)
 			wallX = program->player.pos_y + perpWallDist * rayDirY;
       	else
@@ -146,6 +140,8 @@ void	ft_create_image(t_program *program, t_image buffer)
 			texture = program->textures[3];
 		if (program->map[mapX][mapY] == 'C')
 			texture = program->door;
+		if (program->map[mapX][mapY] == 'A')
+			texture = program->wall_sprite[program->frame_wall % 9];
 		int texX = wallX * (texture.width);
      	if(side == 0 && rayDirX > 0)
 			texX = texture.width - texX - 1;
@@ -156,12 +152,12 @@ void	ft_create_image(t_program *program, t_image buffer)
 		double texPos = (drawStart - SCREEN_H / 2 + lineHeight / 2) * step;
 		for (int y = drawStart; y <= drawEnd; y++)
 		{
-			int texY = (int)texPos & (texture.height - 1); // Calculate the corresponding y-coordinate on the texture
+			int texY = (int)texPos & (texture.height - 1);
 			texPos += step;
-			int color = ft_get_texture_pixel(texture, texX, texY); // Get the color from the texture
+			int color = ft_get_texture_pixel(texture, texX, texY);
 			if(side == 1)
 				color = ft_add_shade(color, 0.5);
-			ft_mlx_pixel_put(x, y, color, buffer); // Draw the pixel on the screen
+			ft_mlx_pixel_put(x, y, color, buffer);
 		}
 	}
 	ft_draw_minimap(program, buffer);

@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/22 15:17:31 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:29:24 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,12 @@ typedef struct s_program {
 	double		move_speed;
 	double		rot_speed;
 	int			mouse_move;
+	int			frame;
+	int			frame_wall;
 	t_image		*textures;
+	t_image		*wall_sprite;
 	t_image		door;
 	t_image		buffer;
-	t_image		buffer2;
-	t_image		buffer3;
 	t_color		floor;
 	t_color		ceiling;
 	t_window	window;
@@ -98,7 +99,7 @@ void	ft_draw_vertical_line(int x, int y1, int y2, int color, t_image buffer);
 void ft_mlx_put_image_pixel(int x, int drawStart, int drawEnd, t_image texture, t_image buffer);
 void	ft_draw_minimap(t_program *prog, t_image buffer);
 int		ft_input(int key, void *param);
-int		ft_update(void *param);
+int		ft_update(t_program *program);
 int		ft_add_shade(int color, float factor);
 int		ft_create_trgb(int t, t_color color);
 void	ft_create_image(t_program *program, t_image buffer);
@@ -109,5 +110,6 @@ t_image	ft_get_image(t_program *prog, char *path);
 void	ft_load_textures(t_program *prog);
 int	ft_get_texture_pixel(t_image texture, int x, int y);
 void	ft_put_texture_pixel(int x, int y, t_image texture, t_image buffer);
+void	ft_init_wall_sprite(t_program *prog);
 
 #endif

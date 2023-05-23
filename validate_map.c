@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/22 15:49:18 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/23 10:46:34 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	ft_validate_map(char **map, t_program *prog)
 	char	**new_map;
 	int		err;
 
-	set = "01CONSEW \n";
+	set = "01CONSEWA \n";
 	i = 0;
 	err = 0;
 	while(map[i])
