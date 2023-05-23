@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:42:10 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/23 11:37:43 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:10:22 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ int	ft_input(int key, void *param)
 int	ft_update(t_program *program)
 {
 	program->frame++;
-	if (!(program->frame % 100))
+	if (!(program->frame % 50))
 		program->frame_wall++;
 	ft_create_image(program, program->buffer);
 	mlx_put_image_to_window(program->mlx, program->window.reference, program->buffer.reference, 0, 0);

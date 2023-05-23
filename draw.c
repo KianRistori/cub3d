@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:41:37 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/20 16:44:05 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:11:54 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_draw_minimap(t_program *prog, t_image buffer)
 	{
 		for (int x = 0; prog->map[y][x] != '\0'; x++)
 		 {
-			if (prog->map[y][x] == '1')
+			if (prog->map[y][x] == '1' || prog->map[y][x] == 'A')
 				mlx_fill_square(x * 5, y * 5, 5, 0XFFFFFF, buffer);
 			else if (prog->map[y][x] == '0')
 				mlx_fill_square(x * 5, y * 5, 5, 0x000000, buffer);

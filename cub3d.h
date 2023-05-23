@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/23 11:48:25 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:09:40 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 # include <math.h>
 # include <unistd.h>
 
-# define SCREEN_W 640
-# define SCREEN_H 480
+# define SCREEN_W 1280
+# define SCREEN_H 960
 
 #define TEXTURE_W 64
 #define TEXTURE_H 64

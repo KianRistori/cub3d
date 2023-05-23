@@ -1,10 +1,10 @@
-NO textures/BRICK_3C.xpm
-SO textures/BRICK_3D.xpm
-WE textures/BRICK_4B.xpm
-EA textures/BRICK_4D.xpm
+NO textures/TECH_1A.xpm
+SO textures/TECH_2A.xpm
+WE textures/TECH_3D.xpm
+EA textures/TECH_4C.xpm
 
-F 100,100,0
-C 20,30,0
+F 61,69,69
+C 28,28,28
 
 11111111111111111
 10000000000010001
