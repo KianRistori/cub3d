@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:06:47 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/20 17:22:54 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:03:09 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,21 @@ char **ft_strjoin_map(char **map, char *str)
 		return (map);
 	i = 0;
 	j = 0;
-	while(map[i])
+	while (map[i])
 		i++;
+	if (i == 0)
+		free(map);
 	new_map = malloc(sizeof(char *) * (i + 2));
 	while (j < i)
 	{
-		new_map[j] = map[j];
+		new_map[j] = ft_strdup(map[j]);
 		j++;
 	}
 	new_map[j] = ft_strdup(str);
 	new_map[++j] = 0;
-	//ft_free(map);
+	printf("i = %d\n",i);
+	if (i > 0)
+		ft_free(map);
 	return (new_map);
 }
 

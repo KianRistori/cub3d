@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:07:21 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/23 10:46:34 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:49:55 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ int	ft_validate_map(char **map, t_program *prog)
 	}
 	new_map = ft_mapdup(map);
 	ft_path_find(new_map, &err, prog->player.pos_x, prog->player.pos_y);
-	// ft_free(new_map);
+	ft_free(new_map);
 	if (err)
 		return (0);
 	return (1);

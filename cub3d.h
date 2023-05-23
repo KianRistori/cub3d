@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/23 11:29:24 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:48:25 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,6 @@ void	ft_load_textures(t_program *prog);
 int	ft_get_texture_pixel(t_image texture, int x, int y);
 void	ft_put_texture_pixel(int x, int y, t_image texture, t_image buffer);
 void	ft_init_wall_sprite(t_program *prog);
+void	ft_free(char **str);
 
 #endif
