@@ -6,7 +6,7 @@
 /*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 15:22:26 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:48 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:53:13 by kristori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_draw_floor(t_program *program, t_image buffer)
 		x = 0;
 		while (x < SCREEN_W)
 		{
-			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->ceiling), buffer);
+			ft_mlx_pixel_put(x, y, ft_create_trgb(0, program->floor), buffer);
 			x++;
 		}
 		y++;
