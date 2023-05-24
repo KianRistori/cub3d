@@ -6,7 +6,7 @@
 /*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 14:38:43 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/15 12:45:31 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:55:34 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ char	*ft_strtrim(char *s1, char *set)
 		str = (char *)malloc(sizeof(char) * (j - i + 1));
 		if (str)
 			ft_strlcpy(str, (char *)&s1[i], j - i + 1);
-		int i= 0;
-		while (str[i])
-		{
-			printf("str = %c\n", str[i++]);
-		}
-		
 	}
 	return (str);
 }

@@ -6,7 +6,7 @@
 /*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:38:26 by javellis          #+#    #+#             */
-/*   Updated: 2023/05/23 14:43:11 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:19:04 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,31 +40,33 @@ static int	ft_get_textures(char *line, t_program *prog)
 	return (0);
 }
 
+static void	ft_set_rgb(char *line, t_color *color)
+{
+	char	**split;
+
+	split = ft_split(line, ',');
+	color->r = ft_atoi(split[0]);
+	color->g = ft_atoi(split[1]);
+	color->b = ft_atoi(split[2]);
+	ft_free(split);
+}
+
 static int	ft_get_color(char *line, t_program **prog)
 {
 	int		count;
-	char	**split;
 
 	count = 0;
 	if (line)
 	{
 		if (line[0] == 'F')
 		{
-			split = ft_split(line, ',');
-			(*prog)->floor.r = ft_atoi(split[0]);
-			(*prog)->floor.g = ft_atoi(split[1]);
-			(*prog)->floor.b = ft_atoi(split[2]);
+			ft_set_rgb(line, &((*prog)->floor));
 			count++;
-			ft_free(split);
 		}
 		else if (line[0] == 'C')
 		{
-			split = ft_split(line, ',');
-			(*prog)->ceiling.r = ft_atoi(split[0]);
-			(*prog)->ceiling.g = ft_atoi(split[1]);
-			(*prog)->ceiling.b = ft_atoi(split[2]);
+			ft_set_rgb(line, &((*prog)->ceiling));
 			count++;
-			ft_free(split);
 		}
 	}
 	return (count);
@@ -91,8 +93,8 @@ int	ft_map_parsing(char *map, t_program *prog)
 
 	count = 0;
 	ft_prog_init(prog);
-    path = open(map, O_RDWR);
-    line = get_next_line(path);
+	path = open(map, O_RDWR);
+	line = get_next_line(path);
 	while (line != NULL && count < 6)
 	{
 		count += ft_get_textures(line, prog);
@@ -106,8 +108,7 @@ int	ft_map_parsing(char *map, t_program *prog)
 		free(line);
 		line = get_next_line(path);
 	}
-	if (count == 6)
+	if (count == 6 || !path)
 		return (1);
-	else
-		return (0);
+	return (0);
 }

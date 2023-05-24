@@ -6,15 +6,15 @@
 /*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 11:40:25 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/23 14:47:48 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:14:28 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void ft_free_img(t_program *prog, t_image *img, int size)
+void	ft_free_img(t_program *prog, t_image *img, int size)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < size)

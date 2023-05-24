@@ -6,7 +6,7 @@
 /*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 11:59:48 by javellis          #+#    #+#             */
-/*   Updated: 2022/10/05 11:59:53 by javellis         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:55:08 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int	ft_atoi(const char *str)
 
 	sign = 1;
 	result = 0;
-	while ((*str >= 9 && *str <= 13) || *str == ' ' || *str == 'F' || *str == 'C')
-	{
+	while ((*str >= 9 && *str <= 13) || *str == ' '
+		|| *str == 'F' || *str == 'C')
 		str++;
-	}
 	if (*str == '-')
 	{
 		sign *= -1;

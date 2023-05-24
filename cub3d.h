@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kristori <kristori@student.42.fr>          +#+  +:+       +#+        */
+/*   By: javellis <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 11:11:12 by kristori          #+#    #+#             */
-/*   Updated: 2023/05/24 11:04:34 by kristori         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:29:19 by javellis         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,6 @@
 
 # define SCREEN_W 1280
 # define SCREEN_H 960
-
-#define TEXTURE_W 64
-#define TEXTURE_H 64
 
 typedef struct s_vector
 {
@@ -89,7 +86,7 @@ typedef struct s_raycast {
 	double	tex_pos;
 	int		tex_x;
 	int		tex_y;
-	t_image texture;
+	t_image	texture;
 }		t_raycast;
 
 typedef struct s_program {
@@ -113,48 +110,48 @@ typedef struct s_program {
 	char		**path;
 }				t_program;
 
-int		ft_arr_cmp(char *str, char **set);
-int		ft_map_parsing(char *map, t_program *prog);
-char	**ft_strjoin_map(char **map, char *str);
-int		ft_validate_map(char **map, t_program *prog);
-t_window	ft_new_window(t_program *program, char *name);
-void	ft_exit(t_program *program, int key);
-int		ft_close(void *param);
-void	ft_free_all(t_program *program);
-void	ft_draw_line(t_program *prog, int beginX, int beginY, int endX, int endY, int color);
-void	ft_draw_vertical_line(int x, int y1, int y2, int color, t_image buffer);
-void ft_mlx_put_image_pixel(int x, int drawStart, int drawEnd, t_image texture, t_image buffer);
-void	ft_draw_minimap(t_program *prog, t_image buffer);
-int	ft_input(int key, t_program *program);
-int		ft_update(t_program *program);
-int		ft_add_shade(int color, float factor);
-int		ft_create_trgb(int t, t_color color);
-void	ft_create_image(t_program *program, t_image buffer);
-void	ft_mlx_pixel_put(int x, int y, int color, t_image buffer);
-t_image	ft_new_image(void *mlx, int width, int height);
-int		ft_mouse(int x, int y, t_program *program);
-t_image	ft_get_image(t_program *prog, char *path);
-void	ft_load_textures(t_program *prog);
-int	ft_get_texture_pixel(t_image texture, int x, int y);
-void	ft_put_texture_pixel(int x, int y, t_image texture, t_image buffer);
-void	ft_init_wall_sprite(t_program *prog);
-void	ft_free(char **str);
-void	ft_draw_ceiling(t_program *program, t_image buffer);
-void	ft_draw_floor(t_program *program, t_image buffer);
-void	ft_ray_dir(t_program *program, t_raycast *ray);
-void	ft_ray_hit(t_program *program, t_raycast *ray);
-void	ft_ray_side(t_program *program, t_raycast *ray);
-void	ft_ray_init_texture(t_program *program, t_raycast *ray);
-void	ft_ray_draw_vertical(t_raycast *ray, t_image buffer, int x);
-void	ft_ray_wall_direction(t_raycast *ray);
+int				ft_arr_cmp(char *str, char **set);
+int				ft_map_parsing(char *map, t_program *prog);
+char			**ft_strjoin_map(char **map, char *str);
+int				ft_validate_map(char **map, t_program *prog);
+t_window		ft_new_window(t_program *program, char *name);
+void			ft_exit(t_program *program, int key);
+int				ft_close(void *param);
+void			ft_free_all(t_program *program);
+void			ft_draw_minimap(t_program *prog, t_image buffer);
+int				ft_input(int key, t_program *program);
+int				ft_update(t_program *program);
+int				ft_add_shade(int color, float factor);
+int				ft_create_trgb(int t, t_color color);
+void			ft_create_image(t_program *program, t_image buffer);
+void			ft_mlx_pixel_put(int x, int y, int color, t_image buffer);
+t_image			ft_new_image(void *mlx, int width, int height);
+int				ft_mouse(int x, int y, t_program *program);
+t_image			ft_get_image(t_program *prog, char *path);
+int				ft_load_textures(t_program *prog);
+int				ft_get_texture_pixel(t_image texture, int x, int y);
+void			ft_put_texture_pixel(int x, int y,
+					t_image texture, t_image buffer);
+void			ft_init_wall_sprite(t_program *prog);
+void			ft_free(char **str);
+void			ft_draw_ceiling(t_program *program, t_image buffer);
+void			ft_draw_floor(t_program *program, t_image buffer);
+void			ft_ray_dir(t_program *program, t_raycast *ray);
+void			ft_ray_hit(t_program *program, t_raycast *ray);
+void			ft_ray_side(t_program *program, t_raycast *ray);
+void			ft_ray_init_texture(t_program *program, t_raycast *ray);
+void			ft_ray_draw_vertical(t_raycast *ray, t_image buffer, int x);
+void			ft_ray_wall_direction(t_raycast *ray);
 
-int	ft_key_w(t_program *program);
-int	ft_key_a(t_program *program);
-int	ft_key_s(t_program *program);
-int	ft_key_d(t_program *program);
-int	ft_key_f(t_program *program);
-int	ft_key_left_arrow(t_program *program);
-int	ft_key_right_arrow(t_program *program);
-void	ft_draw_key_press(t_program *program);
+int				ft_key_w(t_program *program);
+int				ft_key_a(t_program *program);
+int				ft_key_s(t_program *program);
+int				ft_key_d(t_program *program);
+int				ft_key_f(t_program *program);
+int				ft_key_left_arrow(t_program *program);
+int				ft_key_right_arrow(t_program *program);
+void			ft_draw_key_press(t_program *program);
+char			**ft_mapdup(char **tab);
+void			ft_free_img(t_program *prog, t_image *img, int size);
 
 #endif
