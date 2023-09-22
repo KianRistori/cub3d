@@ -4,7 +4,7 @@
 
 ## My cub3d
 
-<img src="https://res.cloudinary.com/dk8lnfjpm/image/upload/v1695398492/42/cub3d/cub3d_cptqg7.gif" title="" alt="cub3d.gif" data-align="left">
+<img src="https://res.cloudinary.com/dk8lnfjpm/image/upload/v1695399659/42/cub3d/cub3d_t5fzgc.gif" title="" alt="cub3d.gif" data-align="left">
 
 ```bash
 make && ./cub3d map.cub
