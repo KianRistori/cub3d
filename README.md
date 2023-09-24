@@ -12,7 +12,7 @@ make && ./cub3d map.cub
 
 ## Score
 
-![score](https://res.cloudinary.com/dk8lnfjpm/image/upload/v1678097637/42/125_100_wonrhe.png)
+<img width="200px" src="https://res.cloudinary.com/dk8lnfjpm/image/upload/v1678097637/42/125_100_wonrhe.png" />
 
 This project’s objectives are similar to all this first year’s objectives: Rigor, use of C, use
 of basic algorithms, information research etc.
